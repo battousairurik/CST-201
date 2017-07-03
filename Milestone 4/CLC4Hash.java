@@ -29,41 +29,46 @@ public class CLC4Hash {
 	private void addToTable (Client name){
 		int key, number = name.getPhoneNumber();
 		int salt = name.getClientName().length();
-		int temp = convertNumber(number);
-		key = (temp + salt) % 11;
+		key = hash(number, salt);
 		do {
 			if (table.get(key) == null){
 				table.put(key, name);
 				break;
 			}
 			key++;
-			} while (table.get(key) != null);
-		}
-	
+			if (key > table.size()){key = 0;}
+		} while (table.get(key) != null && key <= table.size());
+	}
 	private int convertNumber (int number){
 		char [] space = Integer.toString(number).toCharArray();
 		int temp = 0;
 		for (int x = 0; x < 7; x++){
 			temp += Character.getNumericValue(space[x]);
 		}
+		
 		return temp;
+	}
+	private int hash (int num, int salt){
+		int temp = convertNumber(num);
+		int key = (temp + salt) % 11;
+		return key;
 	}
 	private void displayTable (){
 		for (int x = 0; x < 11; x++){
-			if (table.get(x) == null)
-				System.out.println(table.get(x));
-			else{
+			if (table.get(x) != null)
 				System.out.println(table.get(x).getClientName() + " " + table.get(x).getPhoneNumber());
-			}
-				
 		}
+	}
+	private void searchTable (int key, int salt){
+		System.out.println(table.get(hash(key, salt)).getClientName());
+		
 	}
 	public static void main(String[] args) {
 		CLC4Hash example = new CLC4Hash();
 		example.addClients();
 		example.displayTable();
+		example.searchTable(1234567, 4);
 	}
-
 }
 
 class Client {
