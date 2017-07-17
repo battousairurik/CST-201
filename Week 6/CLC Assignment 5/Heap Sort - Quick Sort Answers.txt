@@ -1,0 +1,43 @@
+heap sort
+
+Q. Is the sort stable? 
+
+A. No, it doesn't take into account the original position of equal items
+
+Q. Is the sort easily adaptable to singly linked lists? 
+
+A. No, heap sort adds items to the end of the list first, making it difficult to work backwards with a singly linked list.
+
+Q. Is the sort easily adaptable to doubly linked lists? 
+
+A. Heap sort is not good to use for linked lists because it needs to access the end of the list for each movement, then works backwards finding the largest element. Using a linked list this would be slow or cumbersome.
+
+Q. What is the worst case distribution for the sort? 
+
+A. The worst case is O(n lg n)
+
+Q. What is the best case distribution for the sort? 
+
+A. the best case is O(n)
+
+Quick sort
+
+Q. Is the sort stable? 
+
+A. Quicksort is not stable because it does not take into account the original position of an element, only the value of the data.
+
+Q. Is the sort easily adaptable to singly linked lists? 
+
+A. Quicksort is adaptable to singly linked lists because you can still split the linked list by pointer location; however, it is not the most efficient way to sort linked lists. This is due to the way quicksort accesses memory, and the fact that linked list nodes may be stored in different portions of memory. This is much faster when using an array, which has consecutive memory locations.
+
+Q. Is the sort easily adaptable to doubly linked lists? 
+
+A. Doubly linked lists using quicksort have the same issue as singly linked lists. Though you can still use them with quicksort.
+
+Q. What is the worst case distribution for the sort? 
+
+A. The worst case occurs when the smallest or largest element of the array is chosen as the bound. This results in O(n^2)
+
+Q. What is the best case distribution for the sort? 
+
+A. The best case occurs when the starting bound is n/2 then all subarrays are split equally until the array has been sorted. This results in O(n lg n)
